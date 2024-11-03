@@ -13,8 +13,11 @@ addons:
       - wget
       - zstd
       - xz-utils
+
 services:
   - docker
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "droid8wars" --password-stdin 2>/dev/null
 before_script:
   - cd $HOME && mkdir vdf200-firmware
   # Download the TWRP Compressed Source Files from PhantomZone54's Release
@@ -22,7 +25,9 @@ before_script:
   # If Building for Oreo-based Devices
   - TWRP_SOURCE1="https://www.mediafire.com/file/xjy4ajg1a6u8vp2/Vodafone_VFD200_SPD_7731_SE2_20160927.zip/file"
   # Then uncomment below lines to download & extract the multi-part files
-- cd $HOME/vdf-firmware/
+  - cd $HOME/vdf-firmware/
+  - aria2c -x16 -s8 --console-log-level=error --summary-interval=0 "${TWRP_SOURCE1}"
+  - tar --zstd -xf MinimalOmniRecovery-twrp-*.*-norepo-2020*.tzst.aa --directory $HOME/twrp/ && rm MinimalOmniRecovery-twrp-*.*-norepo-2020*.tzst.aa
   # Optional: You might need to switch from https://transfer.sh to https://file.io
   # - curl -s --upload-file TWRP-$version-${_CODENAME_}-$(date +"%Y%m%d")-Unofficial.img https://transfer.sh/ && echo ""
 deploy:
