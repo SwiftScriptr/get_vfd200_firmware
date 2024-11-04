@@ -26,7 +26,6 @@ before_script:
   - TWRP_SOURCE1="https://www.mediafire.com/file/xjy4ajg1a6u8vp2/Vodafone_VFD200_SPD_7731_SE2_20160927.zip/file"
   # Then uncomment below lines to download & extract the multi-part files
   - cd $HOME/vdf200-firmware/
-  - wget 'https://www.mediafire.com/file/xjy4ajg1a6u8vp2/Vodafone_VFD200_SPD_7731_SE2_20160927.zip/file'  # Optional: You might need to switch from https://transfer.sh to https://file.io
   # - curl -s --upload-file TWRP-$version-${_CODENAME_}-$(date +"%Y%m%d")-Unofficial.img https://transfer.sh/ && echo ""
 deploy:
   provider: releases
