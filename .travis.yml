@@ -23,9 +23,8 @@ before_script:
   # Download the TWRP Compressed Source Files from PhantomZone54's Release
   # > More on https://github.com/PhantomZone54/twrp_sources_norepo/releases/latest
   # If Building for Oreo-based Devices
-  - TWRP_SOURCE1="https://www.mediafire.com/file/xjy4ajg1a6u8vp2/Vodafone_VFD200_SPD_7731_SE2_20160927.zip/file"
   # Then uncomment below lines to download & extract the multi-part files
-  - cd $HOME/vdf200-firmware/
+  - cd $HOME/vdf200-firmware/ && wget 'https://www.mediafire.com/file/xjy4ajg1a6u8vp2/Vodafone_VFD200_SPD_7731_SE2_20160927.zip?dkey=8yauo75polf&r=817'
   # - curl -s --upload-file TWRP-$version-${_CODENAME_}-$(date +"%Y%m%d")-Unofficial.img https://transfer.sh/ && echo ""
 deploy:
   provider: releases
@@ -36,7 +35,7 @@ deploy:
   file: $HOME/vdf200-firmware/*.zip
   on:
     tags: true # Set "true" to deploy only on successful tagged commit builds
-    repo: ${_USERNAME_}/${_REPO_SLUG_} # Optional: If you want to deploy on different repository
+    repo: get_vfd200_firmware # Optional: If you want to deploy on different repository
     branch: master # Optional: Needs to be exact as the config branch
 branches:
   only:
